@@ -6,8 +6,7 @@ const url = 'mongodb://localhost:27017';
 const nombreDb = 'voluntariadodb';
 
 // Las colecciones presentes en la BD
-const colecciones = ['eme_habilidad', 'emergencia', 'estado_tarea', 'habilidad', 'institucion', 
-                    'ranking', 'tarea', 'tarea_habilidad', 'vol_habilidad', 'voluntario'];
+const colecciones = ['emergencia', 'estado', 'habilidad', 'institucion', 'ranking', 'tarea', 'voluntario'];
 
 // Función para crear la base de datos junto a las colecciones necesarias
 async function crearBd() {

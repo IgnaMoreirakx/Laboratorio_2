@@ -13,24 +13,18 @@ async function importarDatos(){
     const emergencia = db.collection('emergencia');
     await emergencia.insertMany([
         // falta ver la foranea id_institucion
-        {nombre: 'Terremoto', descrip: 'Terremoto de 8.5 grados en la escala de Richter', finicio: '2023-03-01', ffin: '2023-03-10'},
-        {nombre: 'Inundación', descrip: 'Inundación en Santiago', finicio: '2023-04-01', ffin: '2023-04-10'},
-        {nombre: 'Incendio', descrip: 'Incendio en Valparaíso', finicio: '2023-05-01', ffin: '2023-05-10'},
-        {nombre: 'Erupción volcánica', descrip: 'Erupción volcánica en el sur de Chile', finicio: '2023-06-01', ffin: '2023-06-10'},
-        {nombre: 'Tsunami', descrip: 'Tsunami en la costa de Chile', finicio: '2023-07-01', ffin: '2023-07-10'},
+        {nombre: 'Terremoto', descrip: 'Terremoto de 8.5 grados en la escala de Richter', finicio: '2023-03-01', ffin: '2023-03-10', estado: {nombre: 'Activa'}},
+        {nombre: 'Inundación', descrip: 'Inundación en Santiago', finicio: '2023-04-01', ffin: '2023-04-10', estado: {nombre: 'Activa'}},
+        {nombre: 'Incendio', descrip: 'Incendio en Valparaíso', finicio: '2023-05-01', ffin: '2023-05-10' , estado: {nombre: 'Pendiente'}},
+        {nombre: 'Erupción volcánica', descrip: 'Erupción volcánica en el sur de Chile', finicio: '2023-06-01', ffin: '2023-06-10', estado: {nombre: 'Pendiente'}},
+        {nombre: 'Tsunami', descrip: 'Tsunami en la costa de Chile', finicio: '2023-07-01', ffin: '2023-07-10', estado: {nombre: 'Finalizada'}},
     ]);
     // Coleccion habilidad
     const habilidad = db.collection('habilidad');
     await habilidad.insertMany([
-        {descrip: 'Cocina'},
-        {descrip: 'Carpintería'},
-        {descrip: 'Electricidad'},
-        {descrip: 'Plomería'},
-        {descrip: 'Albañilería'},
-        {descrip: 'Mecánica'},
-        {descrip: 'Construcción'},
-        {descrip: 'Costura'},
-        {descrip: 'Mecánica automotriz'},
+        {nombre: 'Cocina', codigo: 'COC', puntaje: 5},
+        {nombre: 'Carpintería', codigo: 'CAR', puntaje: 4},
+        {nombre: 'Electricidad', codigo: 'ELE', puntaje: 3},
     ]);
     // Coleccion institucion
     const institucion = db.collection('institucion');
@@ -44,7 +38,6 @@ async function importarDatos(){
     // Coleccion ranking
     const ranking = db.collection('ranking');
     await ranking.insertMany([
-        // faltan las foraneas: id_voluntario, id_tarea
         {puntaje: 1, flg_invitado: 0, flg_participa: 0},
         {puntaje: 2, flg_invitado: 0, flg_participa: 0},
         {puntaje: 3, flg_invitado: 0, flg_participa: 0},
@@ -54,7 +47,6 @@ async function importarDatos(){
     // Coleccion tarea
     const tarea = db.collection('tarea');
     await tarea.insertMany([
-        // falta la foranea id_emergencia, id_estado
         {nombre: 'Cocina', descrip: 'Cocinar para los damnificados', cant_vol_inscritos: 2, finicio: '2023-03-01', ffin: '2023-03-10'},
         {nombre: 'Carpintería', descrip: 'Reparar muebles', cant_vol_inscritos: 3, finicio: '2023-04-01', ffin: '2023-04-10'},
         {nombre: 'Electricidad', descrip: 'Reparar instalaciones eléctricas', cant_vol_inscritos: 4, finicio: '2023-05-01', ffin: '2023-05-10'},
@@ -64,13 +56,30 @@ async function importarDatos(){
     // Coleccion voluntario
     const voluntario = db.collection('voluntario');
     await voluntario.insertMany([
-        {nombre: 'Armin van Buuren', contrasena: '123456'},
-        {nombre: 'Joris Voorn', contrasena: '123456'},
-        {nombre: 'Carl Cox', contrasena: '123456'},
-        {nombre: 'Oliver Heldens', contrasena: 'heldeep'}
+        {nombre: 'Armin van Buuren', contrasena: '123456', habilidades: [
+            {nombre: 'DJ', codigo: 'DJM', puntaje: 100},
+            {nombre: 'Productor', codigo: 'PRO', puntaje: 100},
+        ]},
+        {nombre: 'Joris Voorn', contrasena: '123456', habilidades: [
+            {nombre: 'DJ', codigo: 'DJM', puntaje: 90},
+            {nombre: 'Improvisacion', codigo: 'IMP', puntaje: 80},
+        ]},
+        {nombre: 'Carl Cox', contrasena: '123456', habilidades: [
+            {nombre: 'DJ', codigo: 'DJM', puntaje: 100},
+            {nombre: 'Productor', codigo: 'PRO', puntaje: 100},
+        ]},
+        {nombre: 'Oliver Heldens', contrasena: 'heldeep', habilidades: [
+            {nombre: 'DJ', codigo: 'DJM', puntaje: 90},
+            {nombre: 'Estilo', codigo: 'EST', puntaje: 80},
+        ]},
     ]);
-    // Faltan las colecciones: eme_habilidad, estado_tarea, tarea_habilidad, vol_habilidad
-    // Revisar las foraneas faltantes
+    // Coleccion estado
+    const estado = db.collection('estado');
+    await estado.insertMany([
+        {nombre: 'Pendiente'},
+        {nombre: 'En Curso'},
+        {nombre: 'Finalizado'},
+    ]);
 
     console.log('Datos importados correctamente');
     conexion.close();
