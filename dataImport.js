@@ -57,20 +57,20 @@ async function importarDatos(){
     const voluntario = db.collection('voluntario');
     await voluntario.insertMany([
         {nombre: 'Armin van Buuren', contrasena: '123456', habilidades: [
-            {nombre: 'DJ', codigo: 'DJM', puntaje: 100},
-            {nombre: 'Productor', codigo: 'PRO', puntaje: 100},
+            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 100},
+            {_id: 2,nombre: 'Productor', codigo: 'PRO', puntaje: 100},
         ]},
         {nombre: 'Joris Voorn', contrasena: '123456', habilidades: [
-            {nombre: 'DJ', codigo: 'DJM', puntaje: 90},
-            {nombre: 'Improvisacion', codigo: 'IMP', puntaje: 80},
+            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 90},
+            {_id: 2, nombre: 'Improvisacion', codigo: 'IMP', puntaje: 80},
         ]},
         {nombre: 'Carl Cox', contrasena: '123456', habilidades: [
-            {nombre: 'DJ', codigo: 'DJM', puntaje: 100},
-            {nombre: 'Productor', codigo: 'PRO', puntaje: 100},
+            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 100},
+            {_id: 2, nombre: 'Productor', codigo: 'PRO', puntaje: 100},
         ]},
         {nombre: 'Oliver Heldens', contrasena: 'heldeep', habilidades: [
-            {nombre: 'DJ', codigo: 'DJM', puntaje: 90},
-            {nombre: 'Estilo', codigo: 'EST', puntaje: 80},
+            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 90},
+            {_id: 2, nombre: 'Estilo', codigo: 'EST', puntaje: 80},
         ]},
     ]);
     // Coleccion estado

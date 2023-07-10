@@ -1,16 +1,15 @@
 package grupo1.lab2.Documents;
 
+
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
-
 @Data
-@Document(collection = "voluntario")
-public class VoluntarioDocument {
+@Document(collection = "habilidad")
+public class HabilidadDocument {
+
     @Id
     @Field("_id")
     private String id;
@@ -18,11 +17,10 @@ public class VoluntarioDocument {
     @Field("nombre")
     private String nombre;
 
-    @Field("contrasena")
-    private String contrasena;
+    @Field("puntaje")
+    private Integer puntaje;
 
-    @DBRef
-    @Field("habilidades")
-    private List<HabilidadDocument> habilidades;
+    @Field("codigo")
+    private String codigo;
 
 }
