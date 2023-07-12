@@ -3,6 +3,7 @@ package grupo1.lab2.Services;
 import grupo1.lab2.Documents.HabilidadDocument;
 import grupo1.lab2.Documents.VoluntarioDocument;
 import grupo1.lab2.Repository.VoluntarioRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,4 +22,11 @@ public class VoluntarioService {
         return voluntario.getHabilidades().stream().mapToInt(HabilidadDocument::getPuntaje).average().orElse(0.0);
 
     }
+
+    public List<HabilidadDocument> getSkillsUser(String id){
+        VoluntarioDocument voluntarioDocument = voluntarioRepository.findById(id);
+        List<HabilidadDocument> habilidades = voluntarioDocument.getHabilidades();
+        return habilidades;
+    }
+
 }

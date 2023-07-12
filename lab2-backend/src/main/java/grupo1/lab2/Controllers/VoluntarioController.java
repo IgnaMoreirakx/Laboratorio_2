@@ -1,7 +1,9 @@
 package grupo1.lab2.Controllers;
 
+import grupo1.lab2.Documents.HabilidadDocument;
 import grupo1.lab2.Documents.VoluntarioDocument;
 import grupo1.lab2.Services.VoluntarioService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,5 +28,12 @@ public class VoluntarioController {
     public ResponseEntity<Double> obtenerPromedioHabilidades(@PathVariable String id) {
         double average = voluntarioService.calcularPromedioHabilidades(id);
         return ResponseEntity.ok(average);
+    }
+
+    @GetMapping("/habilidades/{id}")
+    public  ResponseEntity<List<HabilidadDocument>> getskillsVoluntario(@PathVariable String id){
+        List<HabilidadDocument> habilidadDocuments = voluntarioService.getSkillsUser(id);
+        if(habilidadDocuments.isEmpty()){return ResponseEntity.noContent().build();}
+        return ResponseEntity.ok(habilidadDocuments);
     }
 }

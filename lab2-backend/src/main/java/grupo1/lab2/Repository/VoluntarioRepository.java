@@ -5,8 +5,12 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface VoluntarioRepository extends MongoRepository<VoluntarioDocument, ObjectId> {
 
-    VoluntarioDocument findById(String id);
+    default VoluntarioDocument findById(String id) {
+        return findById(new ObjectId(id)).orElse(null);
+    }
 }
