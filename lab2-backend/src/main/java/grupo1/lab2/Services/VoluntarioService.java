@@ -29,4 +29,12 @@ public class VoluntarioService {
         return habilidades;
     }
 
+    public List<HabilidadDocument> habilidades(String id){
+        VoluntarioDocument voluntario = voluntarioRepository.findById(id);
+        if(voluntario != null)
+            return voluntarioRepository.getListHabilidades(id);
+        else
+            return null;
+    }
+
 }

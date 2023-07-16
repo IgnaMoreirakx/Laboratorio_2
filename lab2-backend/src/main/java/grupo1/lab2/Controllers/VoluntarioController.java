@@ -32,7 +32,7 @@ public class VoluntarioController {
 
     @GetMapping("/habilidades/{id}")
     public  ResponseEntity<List<HabilidadDocument>> getskillsVoluntario(@PathVariable String id){
-        List<HabilidadDocument> habilidadDocuments = voluntarioService.getSkillsUser(id);
+        List<HabilidadDocument> habilidadDocuments = voluntarioService.habilidades(id);
         if(habilidadDocuments.isEmpty()){return ResponseEntity.noContent().build();}
         return ResponseEntity.ok(habilidadDocuments);
     }

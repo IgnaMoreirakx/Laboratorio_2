@@ -1,16 +1,16 @@
 package grupo1.lab2.Repository;
 
+import grupo1.lab2.Documents.HabilidadDocument;
 import grupo1.lab2.Documents.VoluntarioDocument;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
-@Repository
-public interface VoluntarioRepository extends MongoRepository<VoluntarioDocument, ObjectId> {
+public interface VoluntarioRepository {
 
-    default VoluntarioDocument findById(String id) {
-        return findById(new ObjectId(id)).orElse(null);
-    }
+    List<VoluntarioDocument> findAll();
+
+    VoluntarioDocument findById(String id);
+
+    List<HabilidadDocument> getListHabilidades(String id);
+
 }
