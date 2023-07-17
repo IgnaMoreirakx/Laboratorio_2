@@ -23,16 +23,21 @@ async function importarDatos(){
         {_id: finid, nombre: 'Finalizado'},
     ]);
 
+    var terid = new ObjectID();
+    var inuid = new ObjectID();
+    var incid = new ObjectID();
+    var eruid = new ObjectID();
+    var tsuid = new ObjectID();
 
     // Coleccion emergencias
     const emergencia = db.collection('emergencia');
     await emergencia.insertMany([
         // falta ver la foranea id_institucion
-        {nombre: 'Terremoto', descrip: 'Terremoto de 8.5 grados en la escala de Richter', finicio: '2023-03-01', ffin: '2023-03-10', estado: {_id: encid, nombre: 'En Curso'}},
-        {nombre: 'Inundación', descrip: 'Inundación en Santiago', finicio: '2023-04-01', ffin: '2023-04-10', estado: {_id: encid, nombre: 'En Curso'}},
-        {nombre: 'Incendio', descrip: 'Incendio en Valparaíso', finicio: '2023-05-01', ffin: '2023-05-10' , estado: {_id: penid, nombre: 'Pendiente'}},
-        {nombre: 'Erupción volcánica', descrip: 'Erupción volcánica en el sur de Chile', finicio: '2023-06-01', ffin: '2023-06-10', estado: {_id: penid, nombre: 'Pendiente'}},
-        {nombre: 'Tsunami', descrip: 'Tsunami en la costa de Chile', finicio: '2023-07-01', ffin: '2023-07-10', estado: {_id: finid, nombre: 'Finalizado'}},
+        {_id: terid, nombre: 'Terremoto', descrip: 'Terremoto de 8.5 grados en la escala de Richter', finicio: '2023-03-01', ffin: '2023-03-10', estado: {_id: encid, nombre: 'En Curso'}},
+        {_id: inuid, nombre: 'Inundación', descrip: 'Inundación en Santiago', finicio: '2023-04-01', ffin: '2023-04-10', estado: {_id: encid, nombre: 'En Curso'}},
+        {_id: incid, nombre: 'Incendio', descrip: 'Incendio en Valparaíso', finicio: '2023-05-01', ffin: '2023-05-10' , estado: {_id: penid, nombre: 'Pendiente'}},
+        {_id: eruid, nombre: 'Erupción volcánica', descrip: 'Erupción volcánica en el sur de Chile', finicio: '2023-06-01', ffin: '2023-06-10', estado: {_id: penid, nombre: 'Pendiente'}},
+        {_id: tsuid, nombre: 'Tsunami', descrip: 'Tsunami en la costa de Chile', finicio: '2023-07-01', ffin: '2023-07-10', estado: {_id: finid, nombre: 'Finalizado'}},
     ]);
 
     var cocid = new ObjectID();
@@ -49,11 +54,21 @@ async function importarDatos(){
     // Coleccion institucion
     const institucion = db.collection('institucion');
     await institucion.insertMany([
-        {nombre: 'Cruz Roja', descrip: 'Cruz Roja de Chile'},
-        {nombre: 'Bomberos', descrip: 'Bomberos de Chile'},
-        {nombre: 'Carabineros', descrip: 'Caribneros de Chile'},
-        {nombre: 'PDI', descrip: 'PDI de Chile'},
-        {nombre: 'Fuerzas Armadas', descrip: 'Fuerzas Armadas de Chile'},
+        {nombre: 'Cruz Roja', descrip: 'Cruz Roja de Chile', emergencias:[
+            {_id: terid, nombre : 'Terremoto'},
+        ]},
+        {nombre: 'Bomberos', descrip: 'Bomberos de Chile', emergencias:[
+            {_id: inuid, nombre : 'Inundación'},
+        ]},
+        {nombre: 'Carabineros', descrip: 'Caribneros de Chile', emergencias:[
+            {_id: incid, nombre : 'Incendio'},
+        ]},
+        {nombre: 'PDI', descrip: 'PDI de Chile', emergencias:[
+            {_id: eruid, nombre : 'Erupción volcánica'},
+        ]},
+        {nombre: 'Fuerzas Armadas', descrip: 'Fuerzas Armadas de Chile', emergencias:[
+            {_id: tsuid, nombre : 'Tsunami'},
+        ]},
     ]);
     // Coleccion ranking
     const ranking = db.collection('ranking');
@@ -67,30 +82,30 @@ async function importarDatos(){
     // Coleccion tarea
     const tarea = db.collection('tarea');
     await tarea.insertMany([
-        {nombre: 'Cocina', descrip: 'Cocinar para los damnificados', cant_vol_inscritos: 2, finicio: '2023-03-01', ffin: '2023-03-10'},
-        {nombre: 'Carpintería', descrip: 'Reparar muebles', cant_vol_inscritos: 3, finicio: '2023-04-01', ffin: '2023-04-10'},
-        {nombre: 'Electricidad', descrip: 'Reparar instalaciones eléctricas', cant_vol_inscritos: 4, finicio: '2023-05-01', ffin: '2023-05-10'},
-        {nombre: 'Plomería', descrip: 'Reparar instalaciones de agua', cant_vol_inscritos: 5, finicio: '2023-06-01', ffin: '2023-06-10'},
-        {nombre: 'Albañilería', descrip: 'Reparar instalaciones de albañilería', cant_vol_inscritos: 6, finicio: '2023-07-01', ffin: '2023-07-10'},
+        {nombre: 'Cocina', descrip: 'Cocinar para los damnificados', cant_vol_inscritos: 2, finicio: '2023-03-01', ffin: '2023-03-10', estado: {_id: encid, nombre: 'En Curso'}},
+        {nombre: 'Carpintería', descrip: 'Reparar muebles', cant_vol_inscritos: 3, finicio: '2023-04-01', ffin: '2023-04-10', estado: {_id: encid, nombre: 'En Curso'}},
+        {nombre: 'Electricidad', descrip: 'Reparar instalaciones eléctricas', cant_vol_inscritos: 4, finicio: '2023-05-01', ffin: '2023-05-10', estado: {_id: penid, nombre: 'Pendiente'}},
+        {nombre: 'Plomería', descrip: 'Reparar instalaciones de agua', cant_vol_inscritos: 5, finicio: '2023-06-01', ffin: '2023-06-10', estado: {_id: penid, nombre: 'Pendiente'}},
+        {nombre: 'Albañilería', descrip: 'Reparar instalaciones de albañilería', cant_vol_inscritos: 6, finicio: '2023-07-01', ffin: '2023-07-10', estado: {_id: finid, nombre: 'Finalizado'}},
     ]);
     // Coleccion voluntario
     const voluntario = db.collection('voluntario');
     await voluntario.insertMany([
         {nombre: 'Armin van Buuren', contrasena: '123456', habilidades: [
-            {_id: cocid, nombre: 'Cocina', codigo: 'COC', puntaje: 100},
-            {_id: carid, nombre: 'Carpintería', codigo: 'CAR', puntaje: 100},
+            {_id: cocid, nombre: 'Cocina', codigo: 'COC', puntaje: 5},
+            {_id: carid, nombre: 'Carpintería', codigo: 'CAR', puntaje: 4},
         ]},
         {nombre: 'Joris Voorn', contrasena: '123456', habilidades: [
-            {_id: eleid, nombre: 'Electricidad', codigo: 'ELE', puntaje: 90},
-            {_id: carid, nombre: 'Carpintería', codigo: 'CAR', puntaje: 80},
+            {_id: eleid, nombre: 'Electricidad', codigo: 'ELE', puntaje: 3},
+            {_id: carid, nombre: 'Carpintería', codigo: 'CAR', puntaje: 4},
         ]},
         {nombre: 'Carl Cox', contrasena: '123456', habilidades: [
-            {_id: cocid, nombre: 'Cocina', codigo: 'COC', puntaje: 100},
-            {_id: eleid, nombre: 'Electricidad', codigo: 'ELE', puntaje: 100},
+            {_id: cocid, nombre: 'Cocina', codigo: 'COC', puntaje: 5},
+            {_id: eleid, nombre: 'Electricidad', codigo: 'ELE', puntaje: 3},
         ]},
         {nombre: 'Oliver Heldens', contrasena: 'heldeep', habilidades: [
-            {_id: carid, nombre: 'Carpintería', codigo: 'CAR', puntaje: 90},
-            {_id: eleid, nombre: 'Electricidad', codigo: 'ELE', puntaje: 80},
+            {_id: carid, nombre: 'Carpintería', codigo: 'CAR', puntaje: 4},
+            {_id: eleid, nombre: 'Electricidad', codigo: 'ELE', puntaje: 3},
         ]},
     ]);
     
