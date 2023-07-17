@@ -77,11 +77,19 @@ Para MacOs, ingresar al siguiente [link](https://www.jetbrains.com/es-es/idea/do
  ```
 mongod
 ```
-1. Utilizando IntelliJ IDEA Community, asegurarse de que se detecte correctamente Spring Boot y Maven. Ejecutar la aplicación haciendo click en la opción "Run" dentro de IntelliJ IDEA. Con esto ya tenemos levantado el Backend.
 
-2. Para probar las funcionalidades solicitadas en el enunciado, debe abrir postman y hacer las siguientes peticiones GET y POST:
+1. En la carpeta del proyecto, abrir un cmd y ejecutar los siguientes comandos:
+   `npm install mongodb` : Esto instalará el controlador de mongodb para poder ejecutar el archivo javascript que se encargará de crear la base de datos 'voluntariadodb'
+   `node dbCreate.js` : Creará la base de datos 'voluntariadodb'
+   `node dataImport.js` : Poblará la BD con datos de prueba.
+
+2. Utilizando IntelliJ IDEA Community, asegurarse de que se detecte correctamente Spring Boot y Maven. Ejecutar la aplicación haciendo click en la opción "Run" dentro de IntelliJ IDEA. Con esto ya tenemos levantado el Backend.
+
+3. Para probar las funcionalidades solicitadas en el enunciado, debe abrir postman y hacer las siguientes peticiones GET y POST:
     * Obtener Coleccion completa de voluntarios (GET): http://localhost:8080/voluntario
     * Obtener solo un voluntario (GET): http://localhost:8080/voluntario/{id}
+    *(Siendo el parametro id el identificador del voluntario)*
     * Obtener promedio habilidades de un usuario(GET): http://localhost:8080/voluntario/{id}/averageSkills
-    * Obtener habilidades de 1 usuario (GET): http://localhost:8080/voluntario/habilidades/{id}
+    * Obtener habilidades de 1 usuario (GET): http://localhost:8080/voluntario/{id}/habilidades 
+    *(Siendo el parametro id el identificador del voluntario)*
 

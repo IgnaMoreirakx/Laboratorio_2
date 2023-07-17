@@ -17,6 +17,10 @@ public class VoluntarioService {
         return voluntarioRepository.findAll();
     }
 
+    public VoluntarioDocument getVoluntarioById(String id){
+        return voluntarioRepository.findById(id);
+    }
+
     public double calcularPromedioHabilidades(String id) {
         VoluntarioDocument voluntario = voluntarioRepository.findById(id);
         return voluntario.getHabilidades().stream().mapToInt(HabilidadDocument::getPuntaje).average().orElse(0.0);

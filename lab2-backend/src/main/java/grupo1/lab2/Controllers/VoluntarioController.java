@@ -24,13 +24,19 @@ public class VoluntarioController {
         return voluntarioService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<VoluntarioDocument> getVoluntarioById(@PathVariable("id") String id){
+        VoluntarioDocument voluntario = voluntarioService.getVoluntarioById(id);
+        return ResponseEntity.ok(voluntario);
+    }
+
     @GetMapping("/{id}/averageSkills")
     public ResponseEntity<Double> obtenerPromedioHabilidades(@PathVariable String id) {
         double average = voluntarioService.calcularPromedioHabilidades(id);
         return ResponseEntity.ok(average);
     }
 
-    @GetMapping("/habilidades/{id}")
+    @GetMapping("/{id}/habilidades")
     public  ResponseEntity<List<HabilidadDocument>> getskillsVoluntario(@PathVariable String id){
         List<HabilidadDocument> habilidadDocuments = voluntarioService.habilidades(id);
         if(habilidadDocuments.isEmpty()){return ResponseEntity.noContent().build();}
