@@ -4,7 +4,6 @@ var db = connect("mongodb://localhost:27017/voluntariadodb");
 // Coleccion emergencias
 var emergencia = db.getCollection('emergencia');
 emergencia.insertMany([
-        // falta ver la foranea id_institucion
         {nombre: 'Terremoto', descrip: 'Terremoto de 8.5 grados en la escala de Richter', finicio: '2023-03-01', ffin: '2023-03-10', estado: {nombre: 'Activa'}},
         {nombre: 'Inundación', descrip: 'Inundación en Santiago', finicio: '2023-04-01', ffin: '2023-04-10', estado: {nombre: 'Activa'}},
         {nombre: 'Incendio', descrip: 'Incendio en Valparaíso', finicio: '2023-05-01', ffin: '2023-05-10' , estado: {nombre: 'Pendiente'}},
@@ -42,7 +41,6 @@ ranking.insertMany([
     ]);
 
 //Coleccion tarea
-
 var tarea =  db.getCollection('tarea');
 tarea.insertMany([
         {nombre: 'Cocina', descrip: 'Cocinar para los damnificados', cant_vol_inscritos: 2, finicio: '2023-03-01', ffin: '2023-03-10'},
@@ -53,24 +51,23 @@ tarea.insertMany([
     ]);
 
 // Coleccion voluntario
-
 var voluntario = db.getCollection('voluntario');
 voluntario.insertMany([
         {nombre: 'Armin van Buuren', contrasena: '123456', habilidades: [
-            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 100},
-            {_id: 2,nombre: 'Productor', codigo: 'PRO', puntaje: 100},
+            {_id: 1, nombre: 'Cocina', codigo: 'COC', puntaje: 100},
+            {_id: 2,nombre: 'Carpinteria', codigo: 'CAR', puntaje: 100},
         ]},
         {nombre: 'Joris Voorn', contrasena: '123456', habilidades: [
-            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 90},
-            {_id: 2, nombre: 'Improvisacion', codigo: 'IMP', puntaje: 80},
+            {_id: 1, nombre: 'Carpinteria', codigo: 'CAR', puntaje: 90},
+            {_id: 2, nombre: 'Electricidad', codigo: 'ELE', puntaje: 80},
         ]},
         {nombre: 'Carl Cox', contrasena: '123456', habilidades: [
-            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 100},
-            {_id: 2, nombre: 'Productor', codigo: 'PRO', puntaje: 100},
+            {_id: 1, nombre: 'Electricidad', codigo: 'ELE', puntaje: 100},
+            {_id: 2, nombre: 'Carpinteria', codigo: 'CAR', puntaje: 100},
         ]},
         {nombre: 'Oliver Heldens', contrasena: 'heldeep', habilidades: [
-            {_id: 1, nombre: 'DJ', codigo: 'DJM', puntaje: 90},
-            {_id: 2, nombre: 'Estilo', codigo: 'EST', puntaje: 80},
+            {_id: 1, nombre: 'Carpinteria', codigo: 'COC', puntaje: 90},
+            {_id: 2, nombre: 'Electricidad', codigo: 'ELE', puntaje: 80},
         ]},
     ]);
 
@@ -81,6 +78,5 @@ estado.insertMany([
         {nombre: 'En Curso'},
         {nombre: 'Finalizado'},
     ]);
-
 
 print('Datos importados correctamente');
