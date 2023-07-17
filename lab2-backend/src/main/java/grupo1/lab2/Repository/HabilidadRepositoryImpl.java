@@ -17,4 +17,15 @@ public class HabilidadRepositoryImpl implements HabilidadRepository{
     public List<HabilidadDocument> findAll(){
         return mongoTemplate.findAll(HabilidadDocument.class);
     }
+
+    @Override
+    public String crearHabilidad(HabilidadDocument habilidadNueva){
+        HabilidadDocument habilidad = mongoTemplate.save(habilidadNueva);
+        if(habilidad.equals(null)){
+            return "No fue posible crear la habilidad";
+        }
+        else{
+            return "Fue creada correctamente la habilidad";
+        }
+    }
 }

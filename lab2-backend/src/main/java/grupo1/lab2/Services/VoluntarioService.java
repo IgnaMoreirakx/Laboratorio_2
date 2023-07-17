@@ -41,4 +41,8 @@ public class VoluntarioService {
             return null;
     }
 
+    public String crearVoluntario(VoluntarioDocument voluntarioNuevo){
+        return voluntarioRepository.crearVoluntario(voluntarioNuevo);
+    }
+
 }

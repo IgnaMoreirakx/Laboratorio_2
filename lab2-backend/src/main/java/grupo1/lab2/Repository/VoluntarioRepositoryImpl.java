@@ -36,5 +36,16 @@ public class VoluntarioRepositoryImpl implements VoluntarioRepository {
         return voluntario != null ? voluntario.getHabilidades() : null;
     }
 
+    @Override
+    public String crearVoluntario(VoluntarioDocument voluntarioDocument){
+        VoluntarioDocument voluntarioNuevo = mongoTemplate.save(voluntarioDocument);
+        if(voluntarioNuevo.equals(null)){
+            return "No se puedo guardar el voluntario";
+        }
+        else{
+            return "Voluntario guardado correctamente";
+        }
+    }
+
 
 }

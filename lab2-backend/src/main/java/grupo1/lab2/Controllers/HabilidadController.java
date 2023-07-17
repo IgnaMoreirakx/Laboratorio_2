@@ -3,9 +3,8 @@ package grupo1.lab2.Controllers;
 import grupo1.lab2.Documents.HabilidadDocument;
 import grupo1.lab2.Services.HabilidadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +18,12 @@ public class HabilidadController {
     @GetMapping()
     public List<HabilidadDocument> getAll(){
         return habilidadService.getAll();
+    }
+
+    @PostMapping()
+    public ResponseEntity<String> crearHabilidad(@RequestBody HabilidadDocument habilidadNueva){
+        String respuesta = habilidadService.crearHabilidad(habilidadNueva);
+        return ResponseEntity.ok(respuesta);
     }
 
 }

@@ -15,4 +15,8 @@ public class HabilidadService {
     public List<HabilidadDocument> getAll(){
         return habilidadRepository.findAll();
     }
+
+    public String crearHabilidad(HabilidadDocument habilidadNueva){
+        return habilidadRepository.crearHabilidad(habilidadNueva);
+    }
 }

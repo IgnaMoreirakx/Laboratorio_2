@@ -6,10 +6,7 @@ import grupo1.lab2.Services.VoluntarioService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +38,11 @@ public class VoluntarioController {
         List<HabilidadDocument> habilidadDocuments = voluntarioService.habilidades(id);
         if(habilidadDocuments.isEmpty()){return ResponseEntity.noContent().build();}
         return ResponseEntity.ok(habilidadDocuments);
+    }
+
+    @PostMapping()
+    public ResponseEntity<String> crearVoluntario(@RequestBody VoluntarioDocument voluntarioNuevo){
+        String respuesta = voluntarioService.crearVoluntario(voluntarioNuevo);
+        return ResponseEntity.ok(respuesta);
     }
 }

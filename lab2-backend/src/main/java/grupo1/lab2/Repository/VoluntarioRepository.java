@@ -13,4 +13,6 @@ public interface VoluntarioRepository {
 
     List<HabilidadDocument> getListHabilidades(String id);
 
+    String crearVoluntario(VoluntarioDocument voluntario);
+
 }
