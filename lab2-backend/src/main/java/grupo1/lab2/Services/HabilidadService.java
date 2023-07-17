@@ -16,7 +16,12 @@ public class HabilidadService {
         return habilidadRepository.findAll();
     }
 
-    public String crearHabilidad(HabilidadDocument habilidadNueva){
-        return habilidadRepository.crearHabilidad(habilidadNueva);
+    public String crearHabilidad(String nombre, String codigo, int puntaje){
+        return habilidadRepository.crearHabilidad(nombre, codigo, puntaje);
+    }
+
+    public HabilidadDocument getByCodigo(String codigo){
+        HabilidadDocument habilidadDocument = habilidadRepository.getByCodigo(codigo);
+        return habilidadDocument;
     }
 }

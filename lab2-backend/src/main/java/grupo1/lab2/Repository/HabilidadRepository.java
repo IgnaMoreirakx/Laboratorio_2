@@ -12,5 +12,6 @@ public interface HabilidadRepository {
 
     List<HabilidadDocument> findAll();
 
-    String crearHabilidad(HabilidadDocument habilidadDocument);
+    String crearHabilidad(String nombre, String codigo, int puntaje);
+    HabilidadDocument getByCodigo(String codigo);
 }

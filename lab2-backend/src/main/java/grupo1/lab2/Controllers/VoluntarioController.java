@@ -41,8 +41,10 @@ public class VoluntarioController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> crearVoluntario(@RequestBody VoluntarioDocument voluntarioNuevo){
-        String respuesta = voluntarioService.crearVoluntario(voluntarioNuevo);
+    public ResponseEntity<String> crearVoluntario(@RequestParam("nombre") String nombre, @RequestParam("contrasena") String contrasena,
+                                                  @RequestParam("habilidades") List<String> codigosHabilidades){
+        System.out.println(codigosHabilidades);
+        String respuesta = voluntarioService.crearVoluntario(nombre, contrasena, codigosHabilidades);
         return ResponseEntity.ok(respuesta);
     }
 }

@@ -19,10 +19,13 @@ public class HabilidadController {
     public List<HabilidadDocument> getAll(){
         return habilidadService.getAll();
     }
-
+    @GetMapping("/{codigo}")
+    public HabilidadDocument getByCodigo(@PathVariable("codigo") String codigo){
+        return habilidadService.getByCodigo(codigo);
+    }
     @PostMapping()
-    public ResponseEntity<String> crearHabilidad(@RequestBody HabilidadDocument habilidadNueva){
-        String respuesta = habilidadService.crearHabilidad(habilidadNueva);
+    public ResponseEntity<String> crearHabilidad(@RequestParam("nombre") String nombre, @RequestParam("codigo") String codigo, @RequestParam("puntaje") int puntaje){
+        String respuesta = habilidadService.crearHabilidad(nombre, codigo, puntaje);
         return ResponseEntity.ok(respuesta);
     }
 
